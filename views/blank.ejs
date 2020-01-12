@@ -1,0 +1,28 @@
+<%- include('./includes/head.ejs') %>
+
+</head>
+
+<%- include('./includes/nav.ejs') %>
+
+<h1>New</h1>
+
+<%- include('./includes/foot.ejs') %>
+
+<div class="category_table dashboard_table">
+    <div class="table_header">
+        <button type="button" class="btn" onclick="onAddCategory()">Add A Category</button>
+        <hr>
+        <ul class="table_header_list">
+            <li class="item_category">Category</li>
+            <li class="item_subs"># of Subscriptions</li>
+        </ul>
+    </div>
+    <% for(let [index, category] of categories.entries()) { %>
+    <div class="table_items <%= index % 2 === 0 ? 'even' : 'odd' %> <%= index === categories.length - 1 ? 'table_items_last' : '' %>">
+        <ul class="table_items_list">
+            <li class="item_category"><%= category.name %></li>
+            <li class="item_subs"><%= category.subscriptions.length %></li>
+        </ul>
+    </div>
+    <% } %>
+</div>

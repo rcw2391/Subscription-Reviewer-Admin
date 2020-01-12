@@ -1,0 +1,40 @@
+<%- include('./includes/head.ejs') %>
+
+<link rel="stylesheet" href="/css/dashboard.css">
+</head>
+
+<%- include('./includes/nav.ejs') %>
+
+<h1>Dashboard</h1>
+
+<div class="category_table dashboard_table">
+    <div class="table_header">
+        <button type="button" class="btn" onclick="onAddCategory()">Add A Category</button>
+        <hr>
+        <ul class="table_header_list">
+            <li class="item_category">Category</li>
+            <li class="item_subs"># of Subscriptions</li>
+        </ul>
+    </div>
+    <% for(let [index, category] of categories.entries()) { %>
+    <div class="table_items <%= index % 2 === 0 ? 'even' : 'odd' %> <%= index === categories.length - 1 ? 'table_items_last' : '' %>"
+        onclick="onCategory('<%= category._id %>')">
+        <ul class="table_items_list">
+            <li class="item_category"><%= category.name %></li>
+            <li class="item_subs"><%= category.subscriptions.length %></li>
+        </ul>
+    </div>
+    <% } %>
+</div>
+
+<script>
+    function onAddCategory() {
+        window.location.href = "/add-category";
+    }
+
+    function onCategory(id) {
+        window.location.href = '/category/' + id;
+    }
+</script>
+
+<%- include('./includes/foot.ejs') %>

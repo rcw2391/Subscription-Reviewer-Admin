@@ -1,0 +1,33 @@
+<%- include('./includes/head.ejs') %>
+
+<link rel="stylesheet" href="/css/forms.css">
+
+</head>
+
+<%- include('./includes/nav.ejs') %>
+
+<h1>Add Category</h1>
+
+<% if(isError) { %>
+    <div class="error">
+        <% for(let error of errors) { %>
+            <h3><%= error.msg %></h3>
+        <% } %>
+    </div>
+<% } %>
+
+<% if(isSuccess) { %>
+    <div class="success">
+        <h3><%= success %></h3>
+    </div>
+<% } %>
+
+<div class="form-control">
+    <form action="/add-category" method="POST">
+        <label for="name"><span>Name:</span></label>
+        <input type="text" name="name" id="name" value="<%= isError ? name : '' %>" required>
+        <button type="submit" class="btn">Submit</button>
+    </form>
+</div>
+
+<%- include('./includes/foot.ejs') %>

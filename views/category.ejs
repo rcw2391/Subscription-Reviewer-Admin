@@ -1,0 +1,71 @@
+<%- include('./includes/head.ejs') %>
+
+<link rel="stylesheet" href="/css/dashboard.css">
+<link rel="stylesheet" href="/css/forms.css">
+</head>
+
+<%- include('./includes/nav.ejs') %>
+
+<% if(isError) { %>
+    <div class="error">
+        <% for(let error of errors) { %>
+            <h3><%= error.msg %></h3>
+        <% } %>
+    </div>
+<% } %>
+
+<% if(isSuccess) { %>
+    <div class="success">
+        <h3><%= success %></h3>
+    </div>
+<% } %>
+
+<h1><%= category.name %></h1>
+
+<div class="category_table dashboard_table">
+    <div class="table_header">
+        <button type="button" class="btn" onclick="onAddSubscription('<%= category._id %>')">Add A Subscription</button>
+        <hr>
+        <ul class="table_header_list">
+            <li class="item_category">Subscription</li>
+            <li class="item_subs">URL</li>
+        </ul>
+    </div>
+    <% for(let [index, subscription] of category.subscriptions.entries()) { %>
+    <div class="table_items <%= index % 2 === 0 ? 'even' : 'odd' %> <%= index === category.subscriptions.length - 1 ? 'table_items_last' : '' %>"
+        onclick="onSubscription('<%= subscription._id %>')">
+        <ul class="table_items_list">
+            <li class="item_category"><%= subscription.name %></li>
+            <li class="item_subs"><%= subscription.url %></li>
+        </ul>
+    </div>
+    <% } %>
+</div>
+
+<h3>Edit Category Name</h3>
+
+<div class="form-control">
+    <form action="/category/<%= category._id %>" method="POST">
+        <label for="name"><span>Name:</span></label>
+        <input type="text" name="name" id="name" value="<%= isError ? name : '' %>" required>
+        <button type="submit" class="btn">Submit</button>
+    </form>
+</div>
+
+<button type="button" class="btn redBtn" onclick="onDelete('<%= category._id %>')">Delete Category</button>
+
+<script>
+    function onAddSubscription(id) {
+        window.location.href = '/category/new-subscription/' + id;
+    }
+
+    function onSubscription(id) {
+        window.location.href ="/subscription/edit/" + id;
+    }
+
+    function onDelete(id) {
+        window.location.href = '/category/delete/' + id;
+    }
+</script>
+
+<%- include('./includes/foot.ejs') %>

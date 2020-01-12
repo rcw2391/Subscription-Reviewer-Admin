@@ -1,0 +1,41 @@
+<body>
+
+<nav class="main_nav">
+    <ul class="left_nav">
+        <% if(!isAuth) { %>
+            <li><a href="/">Login</a></li>
+        <% } else { %>
+            <li  onmouseover="onDashboard()" onmouseout="onDashboardOut()"><a href="/dashboard" id="dashboard">Dashboard</a>
+                <div class="dashboard_dropdown" id="dashboard_dropdown" style="display: none;">
+                    <ul class="dashboard_list">
+                        <li class="dashboard_item"><a href="/add-category"><span>Add Category</span></a></li>
+                    </ul>
+                </div>
+            </li>
+        <% } %>
+    </ul>
+    <ul class="right_nav">
+    <% if(isAuth) { %>
+        <form method="POST" action="/logout" id="logoutForm"></form>
+        <li><a onclick="onLogout()">Logout</a></li>
+    <% } %>    
+    </ul>
+</nav>
+
+<script>
+    function onLogout() {
+        document.getElementById('logoutForm').submit();
+    }
+
+    function onDashboard() {
+        document.getElementById('dashboard_dropdown').style.display = 'block';
+        document.getElementById('dashboard').classList.add('active');
+    }
+
+    function onDashboardOut() {
+        document.getElementById('dashboard_dropdown').style.display = 'none';
+        document.getElementById('dashboard').classList.remove('active');
+    }
+</script>
+
+<div class="main_container">

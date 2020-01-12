@@ -1,0 +1,47 @@
+.form-control {
+    margin: 1em auto;
+    max-width: 510px;
+}
+
+.form-control label {
+    display: block;
+    margin: 1em 0;
+}
+
+.form-control label > span {
+    width: 140px;
+    padding: 2px;
+    float: left;
+    text-align: right;
+}
+
+.form-control select {
+    width: 200px;
+}
+
+.form-control input[type="text"],
+.form-control input[type="password"],
+.form-control textarea {
+    width: 350px;
+    margin-left: 5px;
+    padding: 2px;
+    border: 1px solid #3cb970;
+    box-shadow: 0 0 2px #4eff98;
+    border-radius: 5px;
+}
+
+.form-control input[type="file"] {
+    margin-left: 5px;
+}
+
+.form-control input:focus,
+.form-control textarea:focus {
+    outline: none;
+    border: 1px solid #795783;
+    box-shadow: 0 0 2px #eba8ff;
+}
+
+.https {
+    margin-left: 3px;
+    opacity: 50%;
+}
